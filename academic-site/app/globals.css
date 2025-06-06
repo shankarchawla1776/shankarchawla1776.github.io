@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: #333333;
+  --background: #ffffff;
+  --link: #0066cc;
+  --heading: #000000;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.6;
+  font-family: 'Computer Modern Serif', serif;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  font-style: italic;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.katex {
+  color: var(--equation);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
+}

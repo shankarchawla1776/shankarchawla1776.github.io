@@ -1,0 +1,12 @@
+---
+title: "On Second Spectral Moments"
+date: "2023-12-29"
+---
+
+**On Second Spectral Moments**: Recently, while searching for analytical methods to assess auto and cross correlation for the dimentions of multivariate time series, I came accross the second spectral moment (SSM).
+
+**Some Background**: For some stochastic process $X(t)$, a known autocorrelation function $\rho(t)$ quantifies the similart of $X(t)$ with itself when shifted by some time lag $t$. Knowing this, it is obvious that $\rho(0) =1$ and $\rho '(0)=0$. Accordingly, if $|\rho(t)| \approx 1$ for a large $|t|$, then $X(t)$ has a long-range dependence, and short term dependence is observed if as $|t| \to \infty$, $|\rho(t) \to 0$. By the [Wiener–Khinchin theorem](https://en.wikipedia.org/wiki/Wiener%E2%80%93Khinchin_theorem), $\rho (t)$ is related to $X(t)$'s power spectral density by a continuous-time Fourier transform. That is, $S_X(\omega) = \mathcal{F}(\rho (t))$.
+
+
+
+**Finding the SSM**: The second spectral moment $\lambda_2$ can be shown to be the second derivative of $X(t)$ can be shown to be the second derivative of the autocorrelation function $\rho (0)$
