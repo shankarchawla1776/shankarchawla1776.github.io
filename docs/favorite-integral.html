@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Current Favorite Integral</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: "Computer Modern", "Latin Modern Roman", "Times New Roman", serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.4;
+            background-color: white;
+            color: black;
+            font-size: 14px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .integral-display {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 24px;
+        }
+
+        a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #551A8B;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Current Favorite Integral</h1>
+    My current favorite integral is
+    <div class="integral-display">
+            $$ \int^{\infty}_{-\infty} \frac{e^{-x}}{(1+e^{-x})^2} \text{d}x =  \int^{\infty}_{-\infty} \frac{\text{d}}{\text{d}x}\left( \frac{1}{1+e^{-x}}\right) \text{d}x = \int^{\infty}_{-\infty}  \frac{\text{d}}{\text{d}x} \sigma(x) \text{d}x = 1$$
+    </div>
+    where $\sigma(x)$ is the logistic function. The improper integral converges to 1, which is cool both because it shows that the derivative of the logistic function is a probability distribution (specifically, $\sigma'(x)$ is the PDF of the logistic distribution), and that the logistic function is a sigmoid function, meaning that the total vertical change is 1.
+
+    <div class="back-link">
+        <a href="index.html">Back</a>
+    </div>
+</body>
+</html>
