@@ -48,12 +48,11 @@
             width: 200px;
             height: 215px;
             object-fit: cover;
+            object-position: center 30%;
             margin-left: 30px;
             margin-bottom: 10px;
             margin-right: 140px;
-            margin-top: -30px;
-            border: 2px solid #333;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            margin-top: -30px; border: 2px solid #333; box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
         a {
@@ -131,6 +130,21 @@
             margin-top: 0 !important; /* Reduced from 8px to 2px */
         }
 
+        .quote {
+            text-align: center;
+            font-style: italic;
+            margin: 20px auto 30px auto;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .quote-attribution {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 8px;
+            font-style: normal;
+        }
+
         @media (max-width: 600px) {
             .profile-photo {
                 float: none;
@@ -147,12 +161,17 @@
 <body>
     <h1>Shankar Chawla</h1>
 
+    <div class="quote">
+        <p>Philosophy brings the mind to take things as they fall, and acquiesce in their distribution, inasmuch as all events proceed from the same cause with itself.</p>
+        <p class="quote-attribution">— Marcus Aurelius, Meditations, Book II</p>
+    </div>
+
     <h2>About</h2>
     <div class="about-section clearfix">
         <img src="headshot.png" alt="Profile photo" class="profile-photo">
-        <p>I'm a senior in highscool.</p>
+        <p>I'm a senior in high school.</p>
 
-            <p>My research interests are broadly related to statistical computation and machine learning with scientific applications in a variety of fields.</p>
+            <p>My research interests are broadly related to statistical and computational methods with a variety of applications in different scientific fields. I'm especially interested in statistical ML, Bayesian methods, and complexity.</p>
         <p></p>
         <p>
 
@@ -168,8 +187,14 @@
 
     <h2>Papers</h2>
     <ul>
-            <li><span class="paper-title">A Fine Motor Task to Study Joint Kinematics in a Preclinical <br> Model of Neurodegenerative Disease: </span><a href="https://pubmed.ncbi.nlm.nih.gov/40587401/">JoVE</a></li>
-            <!-- <li><span class="paper-title">My first paper recently got accepted for publication in JoVE. It investigates <br> the concequences of cerebellar perturbations on mouse motor control.</span></li> -->
+            <li><strong>Contextual role reorganizes object representational geometry in the human cortex</strong><br>
+            Julien Dirani, <strong>Shankar Chawla</strong>, Leila Wehbe*, Brad Mahon*<br>
+            [In preparation]</li>
+
+            <li><strong>A Fine Motor Task to Study Joint Kinematics in a Preclinical Model of Neurodegenerative Disease</strong><br>
+            Alexandria Melick, David Lukacik, <strong>Shankar Chawla</strong>, Sydney Y Schaefer*, Scott C Beeman*, Jessica L Verpeut*<br>
+            JoVE 2025<br>
+            [<a href="https://pubmed.ncbi.nlm.nih.gov/40587401/">pubmed</a>]</li>
 
     </ul>
 
@@ -188,10 +213,9 @@
 
     <h2>Info</h2>
     <ul>
-            <li>I've done some work at The National Center for Adaptive Neurotechnologies, ASU's Social Neurobiology <br> Lab, and CMU's Concepts, Actions, and Objects Lab.</li>
-            <li>I'm a big computer enthusiast. I enjoy working on Linux rices, maintaining a home server, and ROM <br> hacking.</li>
-            <li>Philosophy is a big interest of mine. Most recently, I've read Kierkegaard's Fear and Trembling and Alex <br> Karp's The Technological Republic.</li>
-            <li><a href="favorite-integral.html">My current favorite integral</a></li>
+            <li>I (perhaps rather performatively) choose to write all my code in <a href="https://neovim.io/">neovim</a>. I usually use my own theme, <a href="https://github.com/shankarchawla1776/iguana">iguana</a>.</li>
+            <li>I collect retro video games, most frequently those for the DS systems and the PSP. I'm also a big fan of emulation and ROM hacking.</li>
+            <li>Some texts that have been influential to me are <a href="https://webhomes.maths.ed.ac.uk/~v1ranick/papers/wigner.pdf">Wigner's paper</a> on the effectiveness of mathematics in natural science, <a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html">Hamming's talk</a> on conducting research, and <a href="https://martin.kcvs.ca/phil334/papers/polanyi-m-personal-knowledge-towards-a-post-critical-philosophy.pdf">Polanyi's book</a> on personal knowledge (if you have the time).</li>
     </ul>
 </body>
 </html>
