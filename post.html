@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Shankar Chawla</title>
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <style>
+        * {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: "Computer Modern", "Latin Modern Roman", "Times New Roman", serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .post-date {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #551A8B;
+        }
+
+        a:hover {
+            color: #0000EE;
+        }
+
+        p {
+            margin: 12px 0;
+            text-align: justify;
+            max-width: 100%;
+        }
+
+        .post-content {
+            margin-top: 30px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /* Math display styling */
+        .katex-display {
+            margin: 1.5em 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+        }
+
+        .katex {
+            font-size: 1.1em;
+            max-width: 100%;
+        }
+
+        code {
+            font-family: "Courier New", monospace;
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 12px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        blockquote {
+            border-left: 3px solid #ccc;
+            margin-left: 0;
+            padding-left: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+                font-size: 14px;
+            }
+
+            .katex {
+                font-size: 1em;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="blog.html">← Back to Blog</a>
+    </div>
+
+    <h1 id="post-title">Loading...</h1>
+    <div class="post-date" id="post-date"></div>
+    <div class="post-content" id="post-content">
+        <p>Loading post...</p>
+    </div>
+
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+
+    <!-- KaTeX for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <script>
+        // Get the post file from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const postFile = urlParams.get('file');
+
+        if (!postFile) {
+            document.getElementById('post-content').innerHTML = '<p>Error: No post specified.</p>';
+        } else {
+            // Fetch and display the post
+            fetch(`posts/${postFile}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Post not found');
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Parse markdown front matter (title and date)
+                    const lines = markdown.split('\n');
+                    let title = '';
+                    let date = '';
+                    let contentStart = 0;
+
+                    // Simple front matter parsing
+                    if (lines[0] === '---') {
+                        for (let i = 1; i < lines.length; i++) {
+                            if (lines[i] === '---') {
+                                contentStart = i + 1;
+                                break;
+                            }
+                            const [key, ...valueParts] = lines[i].split(':');
+                            const value = valueParts.join(':').trim();
+                            if (key.trim() === 'title') {
+                                title = value;
+                            } else if (key.trim() === 'date') {
+                                date = value;
+                            }
+                        }
+                    }
+
+                    // Set title and date
+                    if (title) {
+                        document.getElementById('post-title').textContent = title;
+                        document.title = `${title} - Shankar Chawla`;
+                    }
+
+                    if (date) {
+                        const dateFormatted = new Date(date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        document.getElementById('post-date').textContent = dateFormatted;
+                    }
+
+                    // Get content after front matter
+                    const content = lines.slice(contentStart).join('\n');
+
+                    // Convert markdown to HTML
+                    const html = marked.parse(content);
+                    document.getElementById('post-content').innerHTML = html;
+
+                    // Render LaTeX with KaTeX
+                    renderMathInElement(document.getElementById('post-content'), {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false},
+                            {left: '\\[', right: '\\]', display: true},
+                            {left: '\\(', right: '\\)', display: false}
+                        ],
+                        throwOnError: false
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('post-content').innerHTML = `<p>Error loading post: ${error.message}</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
