@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post - Shankar Chawla</title>
 
-    <!-- KaTeX CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 
     <style>
@@ -174,22 +173,18 @@
         <p>Loading post...</p>
     </div>
 
-    <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
 
-    <!-- KaTeX for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
     <script>
-        // Get the post file from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const postFile = urlParams.get('file');
 
         if (!postFile) {
             document.getElementById('post-content').innerHTML = '<p>Error: No post specified.</p>';
         } else {
-            // Fetch and display the post
             fetch(`posts/${postFile}`)
                 .then(response => {
                     if (!response.ok) {
@@ -198,13 +193,11 @@
                     return response.text();
                 })
                 .then(markdown => {
-                    // Parse markdown front matter (title and date)
                     const lines = markdown.split('\n');
                     let title = '';
                     let date = '';
                     let contentStart = 0;
 
-                    // Simple front matter parsing
                     if (lines[0] === '---') {
                         for (let i = 1; i < lines.length; i++) {
                             if (lines[i] === '---') {
@@ -221,7 +214,6 @@
                         }
                     }
 
-                    // Set title and date
                     if (title) {
                         document.getElementById('post-title').textContent = title;
                         document.title = `${title} - Shankar Chawla`;
@@ -236,14 +228,11 @@
                         document.getElementById('post-date').textContent = dateFormatted;
                     }
 
-                    // Get content after front matter
                     const content = lines.slice(contentStart).join('\n');
 
-                    // Convert markdown to HTML
                     const html = marked.parse(content);
                     document.getElementById('post-content').innerHTML = html;
 
-                    // Render LaTeX with KaTeX
                     renderMathInElement(document.getElementById('post-content'), {
                         delimiters: [
                             {left: '$$', right: '$$', display: true},
