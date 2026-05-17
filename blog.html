@@ -3,170 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Shankar Chawla</title>
+    <title>Writing - Shankar Chawla</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <style>
         body {
             font-family: "Palatino Linotype", Palatino, Georgia, serif;
-            background-color: #f5f0e8;
-            color: #3d2817;
+            background-color: #ffffff;
+            color: #1a1a1a;
             margin: 0;
-            padding: 40px 80px;
-            line-height: 1.6;
+            padding: 40px 20px;
+            line-height: 1.7;
             font-size: 16px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #d4c5b0;
+            margin-bottom: 48px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .site-title {
-            font-size: 18px;
-            color: #3d2817;
+            font-size: 20px;
+            font-weight: normal;
+            color: #1a1a1a;
+            text-decoration: none;
         }
 
-        nav {
-            display: flex;
-            gap: 20px;
-        }
+        nav { display: flex; gap: 24px; }
 
         nav a {
-            color: #3d2817;
-            text-decoration: underline;
+            color: #1a1a1a;
+            text-decoration: none;
             font-size: 16px;
         }
 
-        nav a:visited {
-            color: #3d2817;
+        nav a:hover { color: #A51C30; }
+        nav a.active { color: #A51C30; }
+
+        a { color: #A51C30; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── List view ── */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        nav a:hover {
-            color: #3d2817;
+        .tab-btn {
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 8px 20px 8px 0;
+            font-family: inherit;
+            font-size: 16px;
+            color: #777;
+            cursor: pointer;
+            margin-bottom: -1px;
         }
 
-        .content {
-            max-width: 700px;
-        }
-
-        h2 {
-            font-size: 20px;
-            font-weight: normal;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #3d2817;
-        }
-
-        a {
-            color: #8b4513;
-            text-decoration: underline;
-        }
-
-        a:visited {
-            color: #8b4513;
-        }
-
-        a:hover {
-            color: #5d2f0d;
-        }
+        .tab-btn:hover { color: #1a1a1a; }
+        .tab-btn.active { color: #A51C30; border-bottom-color: #A51C30; }
 
         .post-list {
             list-style-type: none;
             padding-left: 0;
+            margin: 0;
+            max-width: 700px;
         }
 
         .post-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #d4c5b0;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e8e8e8;
         }
 
-        .post-title {
+        .post-item-title {
             font-size: 16px;
             font-weight: normal;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+        }
+
+        .post-item-title a {
+            cursor: pointer;
         }
 
         .post-date {
             font-size: 14px;
-            color: #6b5744;
-            margin-bottom: 10px;
+            color: #777;
         }
 
         .post-excerpt {
-            margin-top: 10px;
-            line-height: 1.6;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        /* ── Post view ── */
+        #post-view { display: none; width: 100%; max-width: 860px; margin: 0 auto; }
+
+        .back-link {
+            font-size: 14px;
+            color: #A51C30;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 32px;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        #post-view h1 {
+            font-size: 22px;
+            font-weight: normal;
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        #post-view .post-date {
+            margin-bottom: 32px;
+        }
+
+        #post-content p { margin: 0 0 16px 0; }
+
+        #post-content h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin: 28px 0 12px;
+        }
+
+        #post-content h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 24px 0 10px;
+        }
+
+        .katex-display {
+            margin: 1.5em 0;
+            overflow-x: auto;
+        }
+
+        #post-content code {
+            font-family: "Courier New", monospace;
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        #post-content pre {
+            background: #f4f4f4;
+            padding: 14px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        #post-content pre code { background: none; padding: 0; }
+
+        #post-content blockquote {
+            border-left: 3px solid #ddd;
+            margin-left: 0;
+            padding-left: 20px;
+            color: #555;
+            font-style: italic;
+        }
+
+        #post-content ul, #post-content ol {
+            padding-left: 24px;
+            margin: 0 0 16px;
+        }
+
+        #post-content li { margin-bottom: 6px; }
+
+        #post-content img {
+            max-width: 480px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5em auto;
+        }
+
+        #post-content img + em {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: -1em;
+            margin-bottom: 1.5em;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 30px 20px;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
+            body { padding: 28px 20px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 14px; }
         }
     </style>
 </head>
 <body>
+<div class="wrapper">
     <div class="header">
-        <div class="site-title">Shankar Chawla</div>
+        <a class="site-title" href="index.html">Shankar Chawla</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
             <a href="research.html">Research</a>
-            <a href="random.html">Random</a>
-            <a href="blog.html">Blog</a>
+            <a href="blog.html" class="active">Writing</a>
         </nav>
     </div>
 
-    <div class="content">
-        <ul class="post-list" id="post-list">
-        </ul>
+    <!-- List view -->
+    <div id="list-view">
+        <div class="tabs">
+            <button class="tab-btn" id="tab-posts" onclick="showTab('posts')">Posts</button>
+            <button class="tab-btn active" id="tab-notes" onclick="showTab('notes')">Notes</button>
+        </div>
+        <ul class="post-list" id="post-list"></ul>
     </div>
 
-    <script>
-        const posts = [];
+    <!-- Post view -->
+    <div id="post-view">
+        <a class="back-link" onclick="showList()">← back</a>
+        <h1 id="post-title"></h1>
+        <div class="post-date" id="post-date"></div>
+        <div id="post-content"></div>
+    </div>
+</div>
 
-        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script>
+    const posts = [
+        /* {title, date, file, excerpt, type: "post"} */
+    ];
 
+    const notes = [
+        {
+            title: "On the approximate orthogonality of uniformly distributed unit vectors in high dimensions",
+            date: "2026-05-15",
+            file: "unit-vectors-distance",
+            excerpt: "",
+            type: "note"
+        }
+    ];
+
+    const allEntries = { posts, notes };
+    let activeTab = 'notes';
+
+    function renderList(type) {
+        activeTab = type;
+        const list = allEntries[type].slice().sort((a, b) => new Date(b.date) - new Date(a.date));
         const postList = document.getElementById('post-list');
+        postList.innerHTML = '';
 
-        if (posts.length === 0) {
-            postList.innerHTML = '<li style="list-style: none; text-align: left; color: #6b5744; font-size: 16px; padding: 20px 0;">coming soon hopefully.</li>';
-        } else {
-            posts.forEach(post => {
-                const li = document.createElement('li');
-                li.className = 'post-item';
+        if (list.length === 0) {
+            postList.innerHTML = '<li style="list-style:none;color:#777;padding:8px 0;">coming soon hopefully.</li>';
+            return;
+        }
 
-                const dateFormatted = new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+        list.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'post-item';
+            const dateFormatted = new Date(item.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long'
+            });
+
+            const titleEl = document.createElement('div');
+            titleEl.className = 'post-item-title';
+            const link = document.createElement('a');
+            link.textContent = item.title;
+            link.style.cursor = 'pointer';
+            link.addEventListener('click', () => openPost(item.file, item.title, item.date));
+            titleEl.appendChild(link);
+            renderMathInElement(link, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ],
+                throwOnError: false
+            });
+
+            const dateEl = document.createElement('div');
+            dateEl.className = 'post-date';
+            dateEl.textContent = dateFormatted;
+
+            li.appendChild(titleEl);
+            li.appendChild(dateEl);
+
+            if (item.excerpt) {
+                const excerptEl = document.createElement('div');
+                excerptEl.className = 'post-excerpt';
+                excerptEl.textContent = item.excerpt;
+                li.appendChild(excerptEl);
+            }
+
+            postList.appendChild(li);
+        });
+    }
+
+    function showTab(type) {
+        document.getElementById('tab-posts').classList.toggle('active', type === 'posts');
+        document.getElementById('tab-notes').classList.toggle('active', type === 'notes');
+        renderList(type);
+    }
+
+    function showList() {
+        document.getElementById('list-view').style.display = 'block';
+        document.getElementById('post-view').style.display = 'none';
+        document.title = 'Writing - Shankar Chawla';
+    }
+
+    function openPost(file, title, date) {
+        fetch(`posts/${file}/index.md`)
+            .then(r => { if (!r.ok) throw new Error('not found'); return r.text(); })
+            .then(md => {
+                const lines = md.split('\n');
+                let contentStart = 0;
+                if (lines[0] === '---') {
+                    for (let i = 1; i < lines.length; i++) {
+                        if (lines[i] === '---') { contentStart = i + 1; break; }
+                    }
+                }
+                const body = lines.slice(contentStart).join('\n');
+
+                document.getElementById('list-view').style.display = 'none';
+                const postView = document.getElementById('post-view');
+                postView.style.display = 'block';
+
+                document.getElementById('post-title').textContent = title;
+                document.getElementById('post-date').textContent = new Date(date).toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'long', day: 'numeric'
                 });
 
-                li.innerHTML = `
-                    <div class="post-title">
-                        <a href="post.html?file=${encodeURIComponent(post.file)}">${post.title}</a>
-                    </div>
-                    <div class="post-date">${dateFormatted}</div>
-                    ${post.excerpt ? `<div class="post-excerpt">${post.excerpt}</div>` : ''}
-                `;
+                const content = document.getElementById('post-content');
+                let html = marked.parse(body);
+                html = html.replace(/src="(?!https?:\/\/|\/)/g, `src="posts/${file}/`);
+                content.innerHTML = html;
+                document.title = title + ' - Shankar Chawla';
 
-                postList.appendChild(li);
+                renderMathInElement(document.getElementById('post-title'), {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '\\(', right: '\\)', display: false}
+                    ],
+                    throwOnError: false
+                });
+                renderMathInElement(content, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '\\(', right: '\\)', display: false}
+                    ],
+                    throwOnError: false
+                });
+            })
+            .catch(() => {
+                document.getElementById('post-content').innerHTML = '<p style="color:#777">Error loading post.</p>';
             });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const directPost = params.get('post');
+
+    if (directPost) {
+        const all = [...posts, ...notes];
+        const item = all.find(e => e.file === directPost);
+        if (item) {
+            showTab(item.type === 'note' ? 'notes' : 'posts');
+            openPost(item.file, item.title, item.date);
+        } else {
+            showTab('notes');
         }
-    </script>
+    } else {
+        showTab('notes');
+    }
+</script>
 </body>
 </html>

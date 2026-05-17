@@ -7,45 +7,52 @@
     <style>
         body {
             font-family: "Palatino Linotype", Palatino, Georgia, serif;
-            background-color: #f5f0e8;
-            color: #3d2817;
+            background-color: #ffffff;
+            color: #1a1a1a;
             margin: 0;
-            padding: 40px 80px;
-            line-height: 1.6;
+            padding: 40px 20px;
+            line-height: 1.7;
             font-size: 16px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #d4c5b0;
+            margin-bottom: 48px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .site-title {
-            font-size: 18px;
-            color: #3d2817;
+            font-size: 20px;
+            font-weight: normal;
+            color: #1a1a1a;
+            text-decoration: none;
         }
 
         nav {
             display: flex;
-            gap: 20px;
+            gap: 24px;
         }
 
         nav a {
-            color: #3d2817;
-            text-decoration: underline;
+            color: #1a1a1a;
+            text-decoration: none;
             font-size: 16px;
         }
 
-        nav a:visited {
-            color: #3d2817;
+        nav a:hover {
+            color: #A51C30;
         }
 
-        nav a:hover {
-            color: #3d2817;
+        nav a.active {
+            color: #A51C30;
         }
 
         .content {
@@ -53,92 +60,80 @@
         }
 
         h2 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: normal;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #3d2817;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+            letter-spacing: 0.02em;
         }
 
         p {
-            margin: 12px 0;
-            text-align: justify;
+            margin: 0 0 16px 0;
         }
 
         a {
-            color: #8b4513;
-            text-decoration: underline;
-        }
-
-        a:visited {
-            color: #8b4513;
+            color: #A51C30;
+            text-decoration: none;
         }
 
         a:hover {
-            color: #5d2f0d;
+            text-decoration: underline;
         }
 
         ul {
-            margin: 12px 0;
+            margin: 0;
             padding-left: 20px;
         }
 
         li {
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
 
-        .paper-title {
-            font-weight: bold;
+        .paper-meta {
+            font-size: 14px;
+            color: #555;
+            margin-top: 4px;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 30px 20px;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
+            body { padding: 28px 20px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 14px; }
         }
     </style>
 </head>
 <body>
+<div class="wrapper">
     <div class="header">
-        <div class="site-title">Shankar Chawla</div>
+        <a class="site-title" href="index.html">Shankar Chawla</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="research.html">Research</a>
-            <a href="random.html">Random</a>
-            <a href="blog.html">Blog</a>
+            <a href="research.html" class="active">Research</a>
+            <a href="blog.html">Writing</a>
         </nav>
     </div>
 
     <div class="content">
         <h2>Papers</h2>
         <ul>
-            <li><strong>Contextual role modulates object representational geometry in the human cortex</strong><br>
-            Julien Dirani, <strong>Shankar Chawla</strong>, Leila Wehbe*, Brad Mahon*<br>
-            [In preparation]</li>
-
-            <li><strong>A fine motor task to study joint kinematics in a preclinical model of neurodegenerative disease</strong><br>
-            Alexandria Melick, David Lukacik, <strong>Shankar Chawla</strong>, Sydney Y Schaefer*, Scott C Beeman*, Jessica L Verpeut*<br>
-            JoVE 2025<br>
-            [<a href="https://pubmed.ncbi.nlm.nih.gov/40587401/">pubmed</a>]</li>
+            <li>
+                <strong>Contextual role modulates object representational geometry in the human cortex</strong><br>
+                <span class="paper-meta">Julien Dirani, <strong>Shankar Chawla</strong>, Leila Wehbe*, Brad Mahon*<br>
+                [In preparation]</span>
+            </li>
+            <li>
+                <strong>A fine motor task to study joint kinematics in a preclinical model of neurodegenerative disease</strong><br>
+                <span class="paper-meta">Alexandria Melick, David Lukacik, <strong>Shankar Chawla</strong>, Sydney Y Schaefer*, Scott C Beeman*, Jessica L Verpeut*<br>
+                JoVE 2025 &nbsp;[<a href="https://pubmed.ncbi.nlm.nih.gov/40587401/">pubmed</a>]</span>
+            </li>
         </ul>
 
         <h2>Projects</h2>
         <ul>
-            <li><span class="paper-title">A Python adaptation of Los Alamos' functional ANOVA test: </span><a href="https://github.com/shankarchawla1776/F-ANOVA-py?tab=readme-ov-file">F-ANOVA-py</a></li>
+            <li>A Python adaptation of Los Alamos' functional ANOVA test: <a href="https://github.com/shankarchawla1776/F-ANOVA-py?tab=readme-ov-file">F-ANOVA-py</a></li>
         </ul>
     </div>
+</div>
 </body>
 </html>

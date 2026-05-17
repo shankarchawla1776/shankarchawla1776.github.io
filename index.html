@@ -7,84 +7,256 @@
     <style>
         body {
             font-family: "Palatino Linotype", Palatino, Georgia, serif;
-            background-color: #f5f0e8;
-            color: #3d2817;
+            background-color: #ffffff;
+            color: #1a1a1a;
             margin: 0;
-            padding: 40px 80px;
-            line-height: 1.6;
+            padding: 40px 20px;
+            line-height: 1.7;
             font-size: 16px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #d4c5b0;
+            margin-bottom: 48px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .site-title {
-            font-size: 18px;
-            color: #3d2817;
+            font-size: 20px;
+            font-weight: normal;
+            color: #1a1a1a;
+            text-decoration: none;
         }
 
         nav {
             display: flex;
-            gap: 20px;
+            gap: 24px;
         }
 
         nav a {
-            color: #3d2817;
-            text-decoration: underline;
+            color: #1a1a1a;
+            text-decoration: none;
             font-size: 16px;
         }
 
-        nav a:visited {
-            color: #3d2817;
+        nav a:hover {
+            color: #A51C30;
         }
 
-        nav a:hover {
-            color: #3d2817;
+        nav a.active {
+            color: #A51C30;
+        }
+
+        .main {
+            display: flex;
+            gap: 64px;
+            max-width: 860px;
+        }
+
+        .sidebar {
+            width: 190px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-emails {
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 18px;
+            color: #444;
+        }
+
+        .harvard-logo {
+            width: 68px;
+            display: block;
+            margin-bottom: 22px;
+        }
+
+        .sidebar-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 6px;
+        }
+
+        .sidebar-links a {
+            color: #A51C30;
+            text-decoration: none;
+        }
+
+        .sidebar-links a:hover {
+            text-decoration: underline;
         }
 
         .content {
-            max-width: 700px;
+            flex: 1;
+        }
+
+        p {
+            margin: 0 0 16px 0;
+        }
+
+        a {
+            color: #A51C30;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #999;
+            margin: 32px 0;
+        }
+
+        .random-list {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .random-list li {
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .recent-section {
             margin-top: 40px;
         }
 
+        .recent-section h2 {
+            font-size: 15px;
+            font-weight: normal;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0 0 14px 0;
+        }
+
+        .recent-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .recent-table td {
+            padding: 7px 0;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .recent-table td:first-child {
+            width: 52px;
+            padding-right: 12px;
+        }
+
+        .recent-table td:last-child {
+            width: 110px;
+            text-align: right;
+            color: #999;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            letter-spacing: 0.04em;
+            font-family: "Palatino Linotype", Palatino, Georgia, serif;
+        }
+
+        .tag-note {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .tag-post {
+            background: #fde8eb;
+            color: #A51C30;
+        }
+
         @media (max-width: 768px) {
-            body {
-                padding: 30px 20px;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
+            body { padding: 28px 20px; }
+            .main { flex-direction: column; gap: 36px; }
+            .sidebar { width: 100%; }
+            .header { flex-direction: column; align-items: flex-start; gap: 14px; }
         }
     </style>
 </head>
 <body>
+<div class="wrapper">
     <div class="header">
-        <div class="site-title">Shankar Chawla</div>
+        <a class="site-title" href="index.html">Shankar Chawla</a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="index.html" class="active">Home</a>
             <a href="research.html">Research</a>
-            <a href="random.html">Random</a>
-            <a href="blog.html">Blog</a>
+            <a href="blog.html">Writing</a>
         </nav>
     </div>
 
-    <div class="content">
-        <p>I'm an incoming first-year at Harvard College where I hope to concentrate in applied math and statistics. I currently live in Phoenix, Arizona.</p>
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-emails">
+                schawla [at] college.harvard.edu<br>
+                shankarc [at] andrew.cmu.edu
+            </div>
+            <div style="display:flex;justify-content:center;margin-bottom:22px;">
+                <img src="harvcol.png" alt="Harvard College" height="60">
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="https://github.com/shankarchawla1776">Github</a></li>
+                <li><a href="https://www.linkedin.com/in/shankar-chawla-286a63278/">LinkedIn</a></li>
+                <li><a href="https://math.stackexchange.com/users/1410051/shankar">Stack Exchange</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <p>I'm an incoming first-year at Harvard College where I hope to concentrate in applied math and statistics. I currently live in Phoenix, Arizona.</p>
+
+            <p>I spend most of my time (perhaps aimlessly) reading. This habit very naturally led me to develop an interest in research, and I now hope to go into academia.</p>
+
+            <p>My research interests are broadly related to statistical machine learning and high-dimensional statistics. I'm particularly motivated by applications in learning theory and representation learning. I also retain some interest in applied statistical methods and scientific computation.</p>
+
+            <p>Above all, I try to have fun, take nothing <em>too</em> seriously, and maintain a sense of wonder for the universe. If you took the time to visit, I'd love to hear from you.</p>
+
+            <hr class="divider">
+
+            <ul class="random-list">
+                <!-- <li>I play a lot of video games. My most played game is <a href="https://arxiv.org/pdf/2211.11839">Celeste</a>. I'm also a big fan of emulation and ROM hacking for older systems like the DS and the GameCube. You can check out my <a href="https://backloggd.com/u/indefeasible/games/">backloggd</a>, which is far from updated and <a href="https://en.wikipedia.org/wiki/Law_of_comparative_judgment">far from accurate</a>.</li> -->
+                <!-- <li>I write all my code in <a href="https://neovim.io/">neovim</a>.</li> -->
+                <!-- <li>I have a big interest in meteorology.</li> -->
+                <li>Some texts that have been influential to me are <a href="https://webhomes.maths.ed.ac.uk/~v1ranick/papers/wigner.pdf">Wigner's paper</a> on the effectiveness of mathematics in natural science, <a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html">Hamming's talk</a> on conducting research, and <a href="https://martin.kcvs.ca/phil334/papers/polanyi-m-personal-knowledge-towards-a-post-critical-philosophy.pdf">Polanyi's book</a> on personal knowledge (if you have the time).</li>
+            </ul>
+
+            <div class="recent-section">
+                <h2>Recent</h2>
+                <table class="recent-table">
+                    <tbody>
+                        <tr>
+                            <td><span class="tag tag-note">note</span></td>
+                            <td><a href="blog.html?post=unit-vectors-distance">On the approximate orthogonality of uniformly distributed unit vectors in high dimensions</a></td>
+                            <td>May 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 </html>
