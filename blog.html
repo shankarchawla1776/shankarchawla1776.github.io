@@ -223,6 +223,12 @@
             <button class="tab-btn" id="tab-posts" onclick="showTab('posts')">Posts</button>
             <button class="tab-btn active" id="tab-notes" onclick="showTab('notes')">Notes</button>
         </div>
+        <div id="desc-posts" class="tab-desc" style="display:none;max-width:600px;margin-bottom:28px;color:#444;font-size:15px;line-height:1.7;">
+            If I ever have a coherent thought I'll write about it here.
+        </div>
+        <div id="desc-notes" class="tab-desc" style="max-width:600px;margin-bottom:28px;color:#444;font-size:15px;line-height:1.7;">
+            Notes are for me to catalogue random thoughts that others might be interested in.
+        </div>
         <ul class="post-list" id="post-list"></ul>
     </div>
 
@@ -240,7 +246,6 @@
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <script>
     const posts = [
-        /* {title, date, file, excerpt, type: "post"} */
     ];
 
     const notes = [
@@ -312,6 +317,8 @@
     function showTab(type) {
         document.getElementById('tab-posts').classList.toggle('active', type === 'posts');
         document.getElementById('tab-notes').classList.toggle('active', type === 'notes');
+        document.getElementById('desc-posts').style.display = type === 'posts' ? 'block' : 'none';
+        document.getElementById('desc-notes').style.display = type === 'notes' ? 'block' : 'none';
         renderList(type);
     }
 
@@ -340,7 +347,7 @@
 
                 document.getElementById('post-title').textContent = title;
                 document.getElementById('post-date').textContent = new Date(date).toLocaleDateString('en-US', {
-                    year: 'numeric', month: 'long', day: 'numeric'
+                    year: 'numeric', month: 'long'
                 });
 
                 const content = document.getElementById('post-content');
